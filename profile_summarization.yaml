@@ -1,0 +1,19 @@
+prompts:
+        professional_summary: "Provide a concise overview of your professional background."
+        education: "Share details about educational background, including degrees and institutions."
+        work_experience: "Describe roles, responsibilities, and accomplishments in previous positions."
+        skills_and_expertise: "Please list technical, soft, and domain-specific skills."
+        accomplishments: "Highlight specific achievements or projects that demonstrate your impact."
+        certifications_training: "Detail any certifications, courses, or training programs relevant to your profession."
+        leadership_teamwork: "Describe experiences where you demonstrated leadership skills or contributed within a team."
+        innovations_problem_solving: "Share instances where you applied innovative solutions to address challenges."
+        language_proficiency: "List languages you're proficient in, along with proficiency levels."
+        publications_research: "Detail any publications, research projects, or contributions to your field."
+        volunteer_work_community: "Highlight any volunteer work or community service experiences."
+        professional_goals: "Share your career aspirations and objectives."
+        references: "Provide references or contacts who can vouch for your professional abilities."
+        profile_match : "Please analyze the following resume and determine if the candidate is strong in {requirement}.
+                                Provide a response indicating based on skills mentioned in priority, whether the resume
+                                meets the specified requirements."
+        content_summarization : "Please provide a summary of the content below:"
+        default : "Please provide the summary"
