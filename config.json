@@ -1,0 +1,21 @@
+{
+    "text_files_directory" : "E:\\Chandrababu\\Projects\\Samples\\Output",
+    "image_files_directory" : "E:\\Chandrababu\\Projects\\Samples\\Input",
+    //"configured_fields": ["Balance Due","Invoice Date"],
+    "configured_fields" : [],
+    // "table_headers": ["ROLE,NAME , DESIGNATION ,DEPARTMENT, DATE& TIME"],
+    "table_headers" : [],
+    "profile_summarization" : {
+        "prompt_type" : "profile_match",
+        "special_mentions": [
+            "Machine learning",
+            "C++",
+            "Computer vision"
+        ]
+    },
+    "files": [
+        {
+            "image_file_name": "invoice.jpg"
+        }
+    ]
+}
