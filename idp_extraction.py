@@ -4,7 +4,7 @@ import json
 import os
 from profile_summarization import generate_profile_summarization_prompt
 
-OPEN_API_KEY = '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'
+OPEN_API_KEY = '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'
 
 
 def generate_response(prompt):
@@ -47,12 +47,9 @@ class InvoiceExtractor:
         self.configured_fields = None
         self.image_file_names = None
         self.table_headers = None
-        self.profile_summary_type = None
-        self.profile_requirements = None
-        self.skills = []
         # Set OpenAI API key
         openai.api_key = self.api_key
-
+        self.summarization_prompt = None
         # self.load_field_config_file(field_config_path)
         self.read_json_data(config_data=receivedJson_data)
 
@@ -70,10 +67,7 @@ class InvoiceExtractor:
         self.configured_fields = config_data['configured_fields']
         self.image_file_names = [entry['image_file_name'] for entry in config_data['files']]
         self.table_headers = config_data['table_headers']
-        self.profile_summary_type = config_data['profile_summarization']['prompt_type']
-        self.profile_requirements = config_data['profile_summarization']['special_mentions']
-        for requirement in self.profile_requirements:
-            self.skills.append(requirement)
+        self.summarization_prompt = config_data['profile_summarization']['doc_qa']
 
     def process_files(self):
         data = []
@@ -99,12 +93,13 @@ class InvoiceExtractor:
                     _response = generate_response(_prompt)
                     response_data['table_data'] = _response
 
-                if self.profile_summary_type is not None:
-                    _prompt_type = self.profile_summary_type
-                    _prompt = generate_profile_summarization_prompt(requirement=_prompt_type)
-                    new_prompt = _prompt.replace("{requirement}", ",".join(self.skills))
-                    _response = generate_response(new_prompt)
-                    response_data['summary'] = _response
+                if self.summarization_prompt is not None:
+                    _prompt = f"Question: {self.summarization_prompt}\n from the following content. Text : {content}\n" \
+                              "If the value is extracted, return NULL"
+                    _response = generate_response(_prompt)
+                    cleaned_text = _response.replace("Answer:", "")
+
+                    response_data['summary'] = cleaned_text.strip()
 
             except FileNotFoundError:
                 print(f"File not found: {text_file_path}")

@@ -6,12 +6,7 @@
     // "table_headers": ["ROLE,NAME , DESIGNATION ,DEPARTMENT, DATE& TIME"],
     "table_headers" : [],
     "profile_summarization" : {
-        "prompt_type" : "profile_match",
-        "special_mentions": [
-            "Machine learning",
-            "C++",
-            "Computer vision"
-        ]
+        "doc_qa" : "How many years of relavent experiance in C++"
     },
     "files": [
         {
